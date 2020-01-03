@@ -1,0 +1,48 @@
+
+    type Query{
+        bands: [Band]
+        band(id: ID!): Band
+        musicians: [Musician]
+        musician(id: ID!): Musician
+    }
+
+    type Band {
+        id: ID!
+        name: String
+        style: String
+        formedIn: Int
+        members: [Musician]
+    }
+        
+    type Musician @key(fields: "name"){
+        id: ID!
+        name: String!
+        role: Role
+        band: Band
+    }
+        
+    enum Role {
+        bassist
+        drummer
+        guitarist
+        vocalist
+    }
+
+    type Mutation {
+        deleteBand(bandId: ID!): DeleteResponse!
+        deleteMusician(musicianId: ID!): DeleteResponse!
+        addBand(
+            name: String
+            style: String
+            formedIn: Int
+        ): Band!
+        addMusician(
+            name: String
+            role: Role
+        ): Musician!
+    }
+
+    type DeleteResponse {
+        success: Boolean!
+        message: String
+    }
