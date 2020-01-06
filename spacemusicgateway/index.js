@@ -26,7 +26,6 @@ const gateway = new ApolloGateway({
 const server = new ApolloServer({
     gateway,
     engine: {
-        apiKey: "service:tksfirst123g:cgxOyiE_Sf0DE43IgtovJw",
         schemaTag: "current"
     },
     subscriptions: false,
